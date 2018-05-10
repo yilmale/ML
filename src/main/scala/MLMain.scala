@@ -19,6 +19,24 @@ object MLMain extends App {
   var rules = model.sort()
   rules foreach (r => print(r))
 
+  import breeze.optimize.linear._
+  val lp = new LinearProgram()
+  import lp._
+  val x0 = Real()
+  val x1 = Real()
+  val x2 = Real()
+
+
+  val lpp  =  ( (x0 +  x1 * 2 + x2 * 3 )
+    subjectTo ( x0 * -1 + x1 + x2 <= 20)
+    subjectTo ( x0 - x1 * 3 + x2 <= 30)
+    subjectTo ( x0 <= 40 )
+    )
+
+  val result = maximize( lpp)
+
+
+
 
   /*
  var epsilon : Double = 0.1
