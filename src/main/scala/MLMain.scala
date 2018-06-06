@@ -7,11 +7,31 @@ import breeze.optimize._
 import xcs.XCSAlgorithm.model
 import xcs._
 
+import org.nlogo.app.App
+import java.awt.EventQueue
+import org.nlogo.headless.HeadlessWorkspace
 
 
 
-object MLMain extends App {
+object MLMain {
+  def main(args: Array[String]): Unit = {
+    val workspace = HeadlessWorkspace.newInstance
+    workspace.open("/Users/yilmaz/Desktop/NetLogo 6.0.3/models/Sample Models/Earth Science/Fire.nlogo")
+    workspace.command("setup")
+    workspace.command("go")
+    println(workspace.report("burned-trees"))
+    workspace.dispose()
+  }
 
+  /*
+  App.app.command("set density 62")
+  App.app.command("random-seed 0")
+  App.app.command("setup")
+  App.app.command("repeat 50 [ go ]")
+  println(App.app.report("burned-trees"))*/
+
+
+  /*
   var s = new MUXProblem(10000)
   XCSAlgorithm(s)
 
@@ -19,7 +39,7 @@ object MLMain extends App {
   var rules = model.sort()
   rules foreach (r => print(r))
 
-
+*/
   /*
  var epsilon : Double = 0.1
  bandit(epsilon)
